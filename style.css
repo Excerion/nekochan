@@ -1,0 +1,1667 @@
+/*
+ * Yotsuba Theme Stylesheet
+ * Authentic 4chan Yotsuba Color Palette & Typography
+ */
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body.yotsuba,
+body.yotsuba-b {
+    background-color: #FFFFEE;
+    color: #000000;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+    margin: 0;
+    padding: 8px 12px;
+}
+
+/* Links */
+a {
+    color: #34345C;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #DD0000;
+    text-decoration: underline;
+}
+
+/* Navigation Bar */
+.board-nav {
+    font-size: 9pt;
+    text-align: center;
+    padding: 3px 0 8px 0;
+    color: #89A;
+}
+
+.board-nav a {
+    color: #34345C;
+    margin: 0 1px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin: 10px 0 15px 0;
+}
+
+.board-title {
+    color: #AF0A0F;
+    font-family: Tahoma, sans-serif;
+    font-size: 24pt;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.board-title a {
+    color: #AF0A0F;
+}
+
+.board-subtitle {
+    color: #000000;
+    font-size: 9pt;
+    margin-top: 4px;
+}
+
+.header-divider, .section-divider, .thread-divider {
+    border: 0;
+    height: 1px;
+    background-color: #D9BFB7;
+    margin: 15px 0;
+}
+
+/* Layout Wrapper (Content Area + Right Sidebar) */
+.layout-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.content-area {
+    flex: 1;
+    min-width: 0; /* Prevents flex children from overflowing */
+}
+
+/* Bottom stack: new post, board list, new board share a left edge.
+   The two forms also share a right edge (same max-width). */
+.bottom-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bottom-stack .post-form-box,
+.bottom-stack .new-board-box {
+    margin: 20px 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+.bottom-stack .full-board-list-box {
+    margin: 20px 0;
+    max-width: 950px;
+    width: 100%;
+}
+
+.bottom-stack .full-board-list-box.board-list-narrow {
+    max-width: 600px;
+}
+
+.bottom-stack .mod-actions-form {
+    margin: 20px 0;
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Threads & Posts */
+.thread-container {
+    margin-bottom: 25px;
+    clear: both;
+}
+
+.return-link {
+    margin-bottom: 12px;
+    font-size: 10pt;
+}
+
+.return-link a {
+    display: block;
+}
+
+.post {
+    margin-bottom: 8px;
+    word-break: break-word;
+}
+
+.post::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.op-post {
+    display: block;
+    clear: both;
+}
+
+.post-header {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.post-board {
+    font-weight: bold;
+    color: #34345C;
+}
+
+.post-title {
+    color: #0F0C5D;
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.post-title a.post-board-link {
+    color: #0F0C5D;
+    font-weight: bold;
+}
+
+.post-name {
+    color: #117743;
+    font-weight: bold;
+    margin-right: 6px;
+    white-space: nowrap;
+}
+
+.post-date {
+    color: #000;
+    font-size: 9pt;
+    margin-right: 6px;
+    white-space: nowrap;
+}
+
+.post-num {
+    white-space: nowrap;
+}
+
+.post-num a {
+    color: #000;
+}
+
+.post-num a:hover {
+    color: #DD0000;
+}
+
+.post-view-thread {
+    margin-left: 6px;
+    font-size: 9pt;
+}
+
+.file-info {
+    font-size: 9pt;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.file-info a {
+    color: #34345C;
+    font-weight: bold;
+}
+
+.file-container {
+    float: left;
+    margin: 2px 16px 8px 0;
+    max-width: 100%;
+}
+
+.post-thumb {
+    max-width: 250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    border: none;
+    cursor: pointer;
+    vertical-align: top;
+    display: block;
+}
+
+.reply-post .post-thumb {
+    max-width: 125px;
+    max-height: 125px;
+}
+
+.post-thumb.expanded {
+    max-width: 100%;
+    max-height: none;
+}
+
+.post.expanded-too-big .file-container {
+    float: none;
+    display: block;
+    max-width: 100%;
+    margin: 2px 0 8px 0;
+}
+
+.post.expanded-too-big .post-body,
+.post.expanded-too-big .comment-reply-btn-box {
+    clear: both;
+}
+
+.post-media-player {
+    max-width: 400px;
+    max-height: 300px;
+    display: block;
+    margin-top: 4px;
+}
+
+.post-audio-player {
+    display: block;
+    margin-top: 4px;
+    width: 300px;
+}
+
+.file-badge {
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 8px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 9pt;
+}
+
+.file-icon {
+    font-size: 16pt;
+}
+
+.post-body {
+    line-height: 1.35;
+    margin: 6px 0 0 0;
+}
+
+.comment-reply-btn-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 14px;
+    clear: none;
+    margin: 6px 0 6px 0;
+    font-size: 9pt;
+}
+
+.reply-post:has(.file-container) {
+    display: inline-grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    min-width: max(420px, 165px);
+}
+
+.reply-post:has(.file-container) .post-header,
+.reply-post:has(.file-container) .mod-post-controls,
+.reply-post:has(.file-container) .file-info {
+    grid-column: 1 / -1;
+}
+
+.reply-post:has(.file-container) .file-container {
+    grid-column: 1;
+    grid-row: span 2;
+    float: none;
+    margin: 2px 16px 4px 0;
+}
+
+.reply-post:has(.file-container) .post-body {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.reply-post:has(.file-container) .comment-reply-btn-box {
+    grid-column: 2;
+    align-self: end;
+    clear: none;
+}
+
+.reply-post.expanded-too-big:has(.file-container) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.reply-post.expanded-too-big:has(.file-container) .file-container {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    float: none;
+    margin: 2px 0 8px 0;
+}
+
+.reply-post.expanded-too-big:has(.file-container) .post-body,
+.reply-post.expanded-too-big:has(.file-container) .comment-reply-btn-box {
+    grid-column: 1 / -1;
+    align-self: start;
+}
+
+.op-post .comment-reply-btn-box {
+    /* Keep OP buttons toward the thread separator, rather than tight
+       against a long body, in both overview and expanded thread views. */
+    margin-top: 10px;
+}
+
+.post-body-no-image + .comment-reply-btn-box {
+    /* A short text-only post gets a visible blank line before its footer. */
+    margin-top: 1em;
+}
+
+.clear-post {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+.btn-reply, .btn-reply-link {
+    background: transparent;
+    border: none;
+    color: #34345C;
+    font-size: 9pt;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.btn-reply:hover, .btn-reply-link:hover {
+    color: #DD0000;
+    text-decoration: underline;
+}
+
+/* Omitted Posts */
+.omitted-notice {
+    color: #707070;
+    font-size: 9pt;
+    margin: 8px 0 10px 15px;
+}
+
+.omitted-notice a {
+    color: #707070;
+    font-weight: bold;
+}
+
+/* Replies (Level 2 & Level 3) */
+.replies-wrapper {
+    margin-top: 10px;
+    clear: both;
+}
+
+.comment-tree {
+    margin-bottom: 6px;
+}
+
+.reply-container {
+    display: table;
+    margin: 2px 0;
+    clear: both;
+}
+
+.reply-arrow {
+    float: left;
+    color: #D9BFB7;
+    margin-right: 4px;
+    font-family: monospace;
+    padding-top: 2px;
+}
+
+.reply-post {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 5px 10px;
+    margin-left: 18px;
+    min-width: 420px;
+    max-width: 95%;
+}
+
+/* Level 3: Nested Reply-to-Reply */
+.reply-nested {
+    margin-left: 18px;
+    padding-left: 4px;
+}
+
+/* Desktop: post and reply max widths are 2/3 of the previous size.
+   Nested replies indent by 1/3 of the parent reply's width and stay as
+   wide as that parent, so they overhang on the right by the same amount.
+   ">>" sits against the left edge of every reply. */
+@media (min-width: 851px) {
+    .layout-wrapper {
+        container-type: inline-size;
+        container-name: board-layout;
+        /* Top-level ">>" column: 2ch of monospace at 10pt, plus the old gap. */
+        --arrow-indent: 38.0625px;
+    }
+
+    .op-post {
+        max-width: calc((var(--arrow-indent) + 0.7125 * (100cqi - 410px - var(--arrow-indent)) + 0.2875 * var(--arrow-indent)) * 2 / 3);
+    }
+
+    .comment-tree > .reply-container > .reply-post {
+        max-width: calc((0.7125 * (100cqi - 410px - var(--arrow-indent)) + 0.2875 * var(--arrow-indent)) * 2 / 3);
+        min-width: min(315px, 100%);
+    }
+
+    .comment-tree {
+        display: grid;
+        grid-template-columns: var(--arrow-indent) max-content;
+        width: max-content;
+        max-width: calc(var(--arrow-indent) + (0.7125 * (100cqi - 410px - var(--arrow-indent)) + 0.2875 * var(--arrow-indent)) * 2 / 3);
+        column-gap: 0;
+        justify-items: start;
+    }
+
+    .comment-tree > .reply-container,
+    .comment-tree > .nested-replies-group {
+        display: contents;
+    }
+
+    .comment-tree > .reply-container > .reply-arrow,
+    .reply-nested > .reply-arrow {
+        float: none;
+        margin: 0;
+        padding-top: 0;
+        justify-self: end;
+        width: auto;
+        text-align: right;
+        line-height: 1;
+        white-space: nowrap;
+        font-size: 20px;
+    }
+
+    .comment-tree > .reply-container > .reply-post {
+        margin-left: 0;
+    }
+
+    .reply-nested {
+        display: grid;
+        /* Indent is 1/7 of this box: half of the previous 1/3 of the reply. */
+        grid-template-columns: 1fr 6fr;
+        grid-column: 2;
+        column-gap: 0;
+        justify-items: stretch;
+        justify-self: start;
+        width: 0;
+        min-width: calc(100% * 7 / 6);
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .reply-nested > .reply-post {
+        margin-left: 0;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        justify-self: stretch;
+    }
+}
+
+.tree-reply-bar {
+    margin: 2px 0 6px 36px;
+    font-size: 8.5pt;
+}
+
+.comment-truncated {
+    color: #777;
+    font-weight: bold;
+}
+
+.comment-truncated-link {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+/* Password-protected moderator panel */
+.mod-auth-box {
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 16px 20px;
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+}
+
+.mod-auth-box h1 {
+    margin: 0 0 12px;
+    color: #800000;
+    font-size: 16pt;
+}
+
+.mod-auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mod-auth-box input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 7px;
+    border: 1px solid #D9BFB7;
+}
+
+.mod-auth-box .btn-submit {
+    align-self: flex-start;
+    margin-top: 6px;
+}
+
+.mod-back-link {
+    margin: 18px 0 0;
+    font-size: 9pt;
+}
+
+.mod-message,
+.mod-error {
+    padding: 8px 10px;
+    border: 1px solid #D9BFB7;
+}
+
+.mod-message {
+    background: #E5F0D8;
+}
+
+.mod-error {
+    background: #F8DADA;
+    color: #800000;
+}
+
+.moderator-banner,
+.mod-status-message,
+.mod-actions-form {
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 10px 12px;
+    margin: 10px 0;
+}
+
+.moderator-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.moderator-banner form {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.mod-logout-button {
+    border: 1px solid #800000;
+    background: #EA8;
+    color: #34345C;
+    padding: 4px 9px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 9pt;
+}
+
+.admin-board-panel {
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 10px 12px;
+    margin: 0 0 16px;
+    max-width: 640px;
+}
+
+.admin-board-panel h2 {
+    margin: 0 0 6px;
+    color: #800000;
+    font-size: 12pt;
+}
+
+.admin-board-note {
+    margin: 0 0 8px;
+    font-size: 9pt;
+}
+
+.admin-board-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.admin-field span {
+    font-weight: bold;
+}
+
+.admin-field .input-text,
+.admin-field .textarea-box {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-nsfw {
+    font-weight: bold;
+}
+
+.admin-board-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    margin-top: 10px;
+}
+
+.admin-board-row form,
+.admin-merge-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.admin-merge-form select {
+    font: inherit;
+    font-size: 9pt;
+    padding: 3px 4px;
+    border: 1px solid #AAA;
+    background: #fff;
+}
+
+.admin-delete-button {
+    background: #E99;
+}
+
+.mod-post-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin: 4px 0 6px;
+    padding: 4px 7px;
+    background: #F8E8DE;
+    border: 1px dashed #D9BFB7;
+    font-size: 9pt;
+}
+
+.mod-post-controls label {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.mod-post-controls input[type="checkbox"] {
+    width: auto;
+    max-width: none;
+    margin: 0;
+}
+
+.mod-actions-form {
+    margin: 14px 0 18px;
+}
+
+.mod-actions-form p {
+    margin: 0 0 10px;
+    font-size: 9pt;
+}
+
+.mod-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mod-delete-posts-button {
+    border-color: #800000;
+}
+
+.mod-ban-button {
+    border-color: #800000;
+    background: #E8B0B0;
+}
+
+.mod-ban-button:hover {
+    background: #f0c0c0;
+}
+
+.mod-post-ip {
+    color: #000;
+    font-family: monospace;
+    font-size: 9pt;
+    margin-left: 6px;
+    white-space: nowrap;
+}
+
+.ban-confirm-box textarea,
+.ban-confirm-box select {
+    width: 100%;
+    max-width: 100%;
+    font: inherit;
+    padding: 7px;
+    border: 1px solid #D9BFB7;
+    background: #FFF;
+}
+
+.ban-target-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px;
+    font-size: 9pt;
+}
+
+.ban-target-table th,
+.ban-target-table td {
+    text-align: left;
+    padding: 4px 6px;
+    border-bottom: 1px solid #D9BFB7;
+}
+
+.mod-cancel-ban {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+/* 4chan-style global ban page */
+body.banned-page {
+    background: #EEF2FF;
+    color: #000;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+    margin: 0;
+    padding: 40px 16px;
+}
+
+.banned-wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #D6DAF0;
+    border: 1px solid #B7C5D9;
+    padding: 22px 24px 18px;
+    text-align: center;
+}
+
+.banned-stamp {
+    display: inline-block;
+    border: 4px solid #CC1105;
+    color: #CC1105;
+    font-weight: bold;
+    font-size: 22pt;
+    letter-spacing: 4px;
+    padding: 6px 14px;
+    transform: rotate(-8deg);
+    margin-bottom: 12px;
+}
+
+.banned-wrap h1 {
+    color: #CC1105;
+    font-size: 20pt;
+    margin: 8px 0 14px;
+}
+
+.banned-wrap p {
+    text-align: left;
+}
+
+.banned-reason {
+    text-align: left;
+    background: #EEF2FF;
+    border: 1px solid #B7C5D9;
+    padding: 10px 12px;
+    margin: 10px 0 16px;
+    font-weight: bold;
+}
+
+.banned-info {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 12px 0;
+}
+
+.banned-info th {
+    width: 110px;
+    background: #98E;
+    color: #34345C;
+    border: 1px solid #34345C;
+    padding: 4px 8px;
+    font-size: 9pt;
+}
+
+.banned-info td {
+    border: 1px solid #B7C5D9;
+    background: #EEF2FF;
+    padding: 4px 8px;
+}
+
+.banned-note {
+    color: #555;
+    font-size: 9pt;
+    margin-top: 16px;
+}
+
+/* Markdown & Formatting */
+.greentext {
+    color: #789922;
+}
+
+.quote-link {
+    color: #D00;
+}
+
+.quote-link:hover {
+    color: #800000;
+}
+
+code {
+    background: #E8D4C8;
+    color: #333;
+    padding: 1px 4px;
+    font-family: monospace;
+    font-size: 9pt;
+    border-radius: 2px;
+}
+
+/* Target post highlight */
+:target {
+    background-color: #F8E8DE !important;
+    outline: 2px solid #800000;
+}
+
+/* Post Form (Below Threads) */
+.post-form-box {
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 12px 18px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+}
+
+.post-form-title {
+    color: #800000;
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #D9BFB7;
+    padding-bottom: 4px;
+}
+
+.post-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.post-table td {
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+.field-label {
+    background: #EA8;
+    color: #800000;
+    font-weight: bold;
+    border: 1px solid #800000;
+    padding: 3px 8px !important;
+    width: 80px;
+    text-align: right;
+    font-size: 9pt;
+}
+
+.label-star {
+    margin-left: 1px;
+}
+
+.input-text, .input-file {
+    font-family: inherit;
+    font-size: 9pt;
+    padding: 3px 6px;
+    border: 1px solid #AAA;
+    background: #FFF;
+    width: 220px;
+    box-sizing: border-box;
+}
+
+.name-row,
+.field-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+.post-table .input-text {
+    width: 100%;
+    max-width: 450px;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}
+
+.name-row .input-text {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    flex: 1 1 auto;
+}
+
+.post-table .input-file {
+    width: 100%;
+    max-width: none;
+    flex: none;
+    min-height: 3.2em;
+    height: auto;
+    padding: 0.55em 0.55em;
+    line-height: normal;
+    overflow: visible;
+}
+
+.file-field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 450px;
+}
+
+.file-field .input-file::file-selector-button,
+.file-field .input-file::-webkit-file-upload-button {
+    margin: 0 0.6em 0 0;
+    padding: 0.15em 0.55em;
+    line-height: 1.2;
+    height: auto;
+}
+
+.file-required-line {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2px;
+}
+
+.btn-submit.post-inline-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    height: auto;
+    min-height: 0;
+    padding: 0.4em 0.85em;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.textarea-box {
+    font-family: inherit;
+    font-size: 10pt;
+    padding: 4px;
+    border: 1px solid #AAA;
+    background: #FFF;
+    width: 100%;
+    max-width: 450px;
+    resize: vertical;
+}
+
+.required-badge {
+    color: #800000;
+    font-size: 8.5pt;
+    font-weight: bold;
+    margin-left: 0;
+    white-space: nowrap;
+}
+
+.file-hint {
+    font-size: 8pt;
+    color: #555;
+    margin-top: 3px;
+}
+
+.btn-submit {
+    background: #EA8;
+    border: 1px solid #800000;
+    color: #800000;
+    font-weight: bold;
+    font-size: 9.5pt;
+    padding: 4px 14px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background: #f0c090;
+}
+
+.btn-reset-reply {
+    background: transparent;
+    border: 1px solid #AAA;
+    color: #555;
+    font-size: 8.5pt;
+    padding: 3px 8px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* Right Sidebar */
+.sidebar-right {
+    width: 195px;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.sidebar-section {
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    margin-bottom: 15px;
+    padding: 8px 10px;
+    font-size: 9pt;
+}
+
+.sidebar-header {
+    background: #EA8;
+    color: #800000;
+    font-weight: bold;
+    padding: 3px 6px;
+    border: 1px solid #800000;
+    margin: -8px -10px 8px -10px;
+    font-size: 9pt;
+}
+
+.sidebar-subtext {
+    font-size: 8pt;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-links li {
+    margin-bottom: 4px;
+}
+
+.sidebar-links a {
+    font-weight: bold;
+    color: #34345C;
+}
+
+.sidebar-post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-post-list li {
+    padding: 3px 0;
+    border-bottom: 1px dashed #D9BFB7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-anchor-link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-post-title {
+    color: #000;
+}
+
+.sidebar-anchor-link:hover .sidebar-post-title {
+    color: #DD0000;
+}
+
+.sidebar-board-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-board-list li {
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #D9BFB7;
+}
+
+.sidebar-board-count {
+    color: #555;
+    font-size: 8pt;
+}
+
+.sidebar-empty {
+    color: #777;
+    font-style: italic;
+    font-size: 8.5pt;
+}
+
+.board-filter-form .btn-submit {
+    margin-top: 8px;
+}
+
+.board-filter-toggle,
+.board-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.board-filter-toggle {
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D9BFB7;
+}
+
+.board-filter-list {
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 4px;
+}
+
+.board-filter-list li {
+    justify-content: flex-start;
+}
+
+.board-filter-form input[type="checkbox"] {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 10pt;
+}
+
+.page-link, .page-current {
+    margin: 0 4px;
+    padding: 2px 6px;
+}
+
+.page-current {
+    font-weight: bold;
+    color: #800000;
+}
+
+/* Bottom Full Board List (4 Columns) */
+.full-board-list-box {
+    margin: 20px auto;
+    max-width: 950px;
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 12px 18px;
+}
+
+.board-list-title {
+    color: #800000;
+    font-size: 12pt;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #D9BFB7;
+    padding-bottom: 4px;
+}
+
+.board-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.board-columns-grid.cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.board-columns-grid.cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.board-columns-grid.cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.board-columns-grid.cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.board-column {
+    min-width: 0;
+}
+
+.board-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.board-column li {
+    padding: 0;
+    font-size: 9pt;
+    overflow-wrap: anywhere;
+}
+
+.board-desc {
+    color: #555;
+    font-size: 8.5pt;
+}
+
+/* Bottom New Board Form */
+.new-board-box {
+    margin: 20px auto;
+    max-width: 600px;
+    background: #F0E0D6;
+    border: 1px solid #D9BFB7;
+    padding: 12px 18px;
+}
+
+.new-board-title {
+    color: #800000;
+    font-size: 12pt;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #D9BFB7;
+    padding-bottom: 4px;
+}
+
+.new-board-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.new-board-table td {
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+.field-hint {
+    font-size: 8pt;
+    color: #555;
+    margin-left: 6px;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 8.5pt;
+    color: #777;
+    margin: 20px 0 10px 0;
+}
+
+/* Notice box */
+.notice-box {
+    background: #F0E0D6;
+    border: 1px dashed #800000;
+    padding: 15px;
+    text-align: center;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    .layout-wrapper {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .content-area {
+        width: 100%;
+    }
+
+    .sidebar-right {
+        width: 100%;
+        position: static;
+    }
+
+    .reply-container {
+        display: block;
+        width: 100%;
+    }
+
+    .reply-post {
+        display: block;
+        width: calc(100% - 18px);
+        min-width: 0;
+        max-width: none;
+    }
+
+    .reply-post:has(.file-container) {
+        display: grid;
+        width: calc(100% - 18px);
+        min-width: 0;
+    }
+
+    .reply-nested {
+        width: calc(100% - 18px);
+        margin-left: 18px;
+    }
+
+    .post-thumb,
+    .post-media-player {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .post-audio-player {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .file-info {
+        overflow-wrap: anywhere;
+    }
+
+    .post-form-box {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .bottom-stack .post-form-box,
+    .bottom-stack .new-board-box,
+    .bottom-stack .full-board-list-box,
+    .bottom-stack .mod-actions-form {
+        max-width: 100%;
+    }
+
+    .post-table {
+        table-layout: fixed;
+    }
+
+    .post-table .field-label {
+        width: 70px;
+    }
+
+    .input-text,
+    .input-file,
+    .textarea-box {
+        max-width: 100%;
+    }
+
+    .post-table .input-text,
+    .name-row,
+    .field-inline,
+    .file-field,
+    .post-table .textarea-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .name-row .input-text,
+    .field-inline .input-text {
+        width: auto;
+        flex: 1 1 auto;
+        flex-basis: auto;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .file-field {
+        width: 100%;
+    }
+
+    .post-table .file-field .input-file {
+        width: 100%;
+        max-width: 100%;
+        flex-basis: auto;
+        min-height: 2.9em;
+    }
+
+    .post-inline-submit {
+        font-size: 1em;
+        padding: 0.4em 0.7em;
+        height: auto;
+    }
+
+    .board-nav {
+        overflow-wrap: anywhere;
+    }
+
+    .board-columns-grid {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 520px) {
+    body.yotsuba,
+    body.yotsuba-b {
+        padding: 8px;
+    }
+
+    .board-columns-grid {
+        gap: 3px;
+    }
+}
+
+/*
+ * Yotsuba B palette.
+ * These overrides intentionally change colours only; layout and spacing stay
+ * shared with the regular Yotsuba theme above.
+ */
+body.yotsuba-b {
+    background-color: #EEF2FF;
+    color: #000000;
+}
+
+body.yotsuba-b a {
+    color: #34345C;
+}
+
+body.yotsuba-b a:hover {
+    color: #DD0000;
+}
+
+body.yotsuba-b .board-nav {
+    color: #89A;
+}
+
+body.yotsuba-b .board-nav a,
+body.yotsuba-b .post-board,
+body.yotsuba-b .file-info a,
+body.yotsuba-b .btn-reply,
+body.yotsuba-b .btn-reply-link,
+body.yotsuba-b .sidebar-links a {
+    color: #34345C;
+}
+
+body.yotsuba-b .board-title,
+body.yotsuba-b .board-title a {
+    color: #AF0A0F;
+}
+
+body.yotsuba-b .board-subtitle,
+body.yotsuba-b .post-date,
+body.yotsuba-b .post-num a,
+body.yotsuba-b .sidebar-post-title {
+    color: #000000;
+}
+
+body.yotsuba-b .header-divider,
+body.yotsuba-b .section-divider,
+body.yotsuba-b .thread-divider {
+    background-color: #B7C5D9;
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .post-title,
+body.yotsuba-b .post-title a.post-board-link {
+    color: #0F0C5D;
+}
+
+body.yotsuba-b .post-name {
+    color: #117743;
+}
+
+body.yotsuba-b .file-info,
+body.yotsuba-b .field-hint,
+body.yotsuba-b .file-hint,
+body.yotsuba-b .sidebar-subtext,
+body.yotsuba-b .footer-bottom {
+    color: #555;
+}
+
+body.yotsuba-b .file-badge,
+body.yotsuba-b .reply-post,
+body.yotsuba-b .post-form-box,
+body.yotsuba-b .sidebar-section,
+body.yotsuba-b .full-board-list-box,
+body.yotsuba-b .new-board-box,
+body.yotsuba-b .notice-box {
+    background-color: #D6DAF0;
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .reply-arrow {
+    color: #B7C5D9;
+}
+
+body.yotsuba-b .btn-reply:hover,
+body.yotsuba-b .btn-reply-link:hover {
+    color: #DD0000;
+}
+
+body.yotsuba-b .omitted-notice,
+body.yotsuba-b .omitted-notice a {
+    color: #707070;
+}
+
+body.yotsuba-b code {
+    background-color: #E8EAF5;
+    color: #333;
+}
+
+body.yotsuba-b :target {
+    background-color: #E6EAF8 !important;
+    outline-color: #34345C;
+}
+
+body.yotsuba-b .post-form-title,
+body.yotsuba-b .new-board-title,
+body.yotsuba-b .board-list-title {
+    color: #34345C;
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .field-label {
+    background-color: #98E;
+    color: #34345C;
+    border-color: #34345C;
+}
+
+body.yotsuba-b .input-text,
+body.yotsuba-b .input-file,
+body.yotsuba-b .textarea-box {
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .required-badge,
+body.yotsuba-b .page-current {
+    color: #34345C;
+}
+
+body.yotsuba-b .btn-submit {
+    background-color: #98E;
+    border-color: #34345C;
+    color: #34345C;
+}
+
+body.yotsuba-b .btn-submit:hover {
+    background-color: #AAB0EE;
+}
+
+body.yotsuba-b .btn-reset-reply {
+    border-color: #9AA8C4;
+    color: #555;
+}
+
+body.yotsuba-b .sidebar-header {
+    background-color: #98E;
+    color: #34345C;
+    border-color: #34345C;
+}
+
+body.yotsuba-b .sidebar-post-list li,
+body.yotsuba-b .sidebar-board-list li {
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .sidebar-board-count {
+    color: #555;
+}
+
+body.yotsuba-b .board-filter-toggle {
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .pagination .page-current {
+    color: #34345C;
+}
+
+body.yotsuba-b .mod-auth-box,
+body.yotsuba-b .moderator-banner,
+body.yotsuba-b .mod-status-message,
+body.yotsuba-b .mod-actions-form,
+body.yotsuba-b .admin-board-panel {
+    background-color: #D6DAF0;
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .mod-auth-box h1 {
+    color: #34345C;
+}
+
+body.yotsuba-b .mod-post-controls {
+    background-color: #E6EAF8;
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .mod-logout-button {
+    background-color: #98E;
+    border-color: #34345C;
+    color: #34345C;
+}
+
+body.yotsuba-b .mod-post-ip {
+    color: #000;
+}
+
+body.yotsuba-b .mod-ban-button {
+    background-color: #C8C8F0;
+    border-color: #34345C;
+    color: #34345C;
+}
+
+body.yotsuba-b .ban-target-table th,
+body.yotsuba-b .ban-target-table td,
+body.yotsuba-b .ban-confirm-box textarea,
+body.yotsuba-b .ban-confirm-box select {
+    border-color: #B7C5D9;
+}
+
+body.yotsuba-b .mod-error {
+    background-color: #F8DADA;
+    border-color: #C99;
+    color: #800000;
+}

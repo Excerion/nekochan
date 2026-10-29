@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <!-- Cat Ears -->
+    <polygon points="10,26 18,4 28,20" fill="#EA8" stroke="#800000" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="14,23 19,9 25,19" fill="#FFB0B0"/>
+    
+    <polygon points="54,26 46,4 36,20" fill="#EA8" stroke="#800000" stroke-width="2" stroke-linejoin="round"/>
+    <polygon points="50,23 45,9 39,19" fill="#FFB0B0"/>
+
+    <!-- Cat Head -->
+    <ellipse cx="32" cy="38" rx="24" ry="20" fill="#F0E0D6" stroke="#800000" stroke-width="2"/>
+
+    <!-- Cheek Fluffs -->
+    <polygon points="8,40 3,44 10,48" fill="#F0E0D6"/>
+    <polygon points="56,40 61,44 54,48" fill="#F0E0D6"/>
+
+    <!-- Cat Eyes -->
+    <ellipse cx="22" cy="35" rx="4" ry="5.5" fill="#800000"/>
+    <circle cx="20.5" cy="33.5" r="1.8" fill="#FFFFFF"/>
+    <circle cx="23.5" cy="37" r="0.8" fill="#FFFFFF"/>
+
+    <ellipse cx="42" cy="35" rx="4" ry="5.5" fill="#800000"/>
+    <circle cx="40.5" cy="33.5" r="1.8" fill="#FFFFFF"/>
+    <circle cx="43.5" cy="37" r="0.8" fill="#FFFFFF"/>
+
+    <!-- Nose -->
+    <polygon points="32,41 29.5,38 34.5,38" fill="#D45B6A"/>
+
+    <!-- Mouth -->
+    <path d="M 28 43 Q 32 46 32 42 Q 32 46 36 43" fill="none" stroke="#800000" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Whiskers -->
+    <line x1="8" y1="38" x2="20" y2="40" stroke="#800000" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="7" y1="44" x2="20" y2="43" stroke="#800000" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="56" y1="38" x2="44" y2="40" stroke="#800000" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="57" y1="44" x2="44" y2="43" stroke="#800000" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
