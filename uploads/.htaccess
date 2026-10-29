@@ -1,0 +1,9 @@
+# Prevent script execution in uploads folder
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps .cgi .pl .py .sh
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phps .cgi .pl .py .sh
