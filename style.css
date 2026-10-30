@@ -1159,8 +1159,14 @@ code {
     font-size: 8.5pt;
 }
 
-.board-filter-form .btn-submit {
+.board-filter-actions {
+    display: flex;
+    gap: 8px;
     margin-top: 8px;
+}
+
+.board-filter-actions .btn-submit {
+    margin-top: 0;
 }
 
 .board-filter-toggle,

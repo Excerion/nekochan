@@ -1093,9 +1093,9 @@ if ($viewMode === 'thread') {
 
             <!-- Board filter (replaces Top Boards list) -->
             <div class="sidebar-section">
-                <div class="sidebar-header">Filter Boards</div>
+                <div class="sidebar-header">Board filter</div>
                 <div class="sidebar-subtext">Check boards, then Filter:</div>
-                <form method="get" action="<?= htmlspecialchars($adminMode ? admin_url() : ($moderatorMode ? moderator_url() : get_base_path())) ?>" id="board-filter-form" class="board-filter-form">
+                <form method="get" action="<?= htmlspecialchars($adminMode ? admin_url() : ($moderatorMode ? moderator_url() : get_base_path())) ?>" id="board-filter-form" class="board-filter-form" data-bookmark-url="<?= htmlspecialchars($sidebarOverviewUrl) ?>">
                     <input type="hidden" name="filter" value="1">
                     <label class="board-filter-toggle" for="board-filter-toggle-all">
                         <input type="checkbox" id="board-filter-toggle-all">
@@ -1112,7 +1112,10 @@ if ($viewMode === 'thread') {
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                    <button type="submit" class="btn-submit">Filter</button>
+                    <div class="board-filter-actions">
+                        <button type="submit" class="btn-submit">Filter</button>
+                        <button type="button" class="btn-submit" id="board-filter-save">Save</button>
+                    </div>
                 </form>
             </div>
 

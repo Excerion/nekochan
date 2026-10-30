@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterForm = document.getElementById('board-filter-form');
     if (filterForm) {
         const toggleAll = document.getElementById('board-filter-toggle-all');
+        const saveFilterButton = document.getElementById('board-filter-save');
         const boardBoxes = Array.from(filterForm.querySelectorAll('input[name="boards[]"]'));
 
         const syncToggleAll = () => {
@@ -198,6 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
         boardBoxes.forEach((box) => {
             box.addEventListener('change', syncToggleAll);
         });
+
+        if (saveFilterButton) {
+            saveFilterButton.addEventListener('click', () => {
+                const bookmarkUrl = filterForm.dataset.bookmarkUrl || '';
+                if (!bookmarkUrl) {
+                    return;
+                }
+
+                const absoluteBookmarkUrl = new URL(bookmarkUrl, window.location.href).href;
+                window.prompt('Bookmark this board filter overview URL:', absoluteBookmarkUrl);
+            });
+        }
 
         syncToggleAll();
     }
