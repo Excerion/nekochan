@@ -1126,6 +1126,11 @@ code {
     color: #000;
 }
 
+.sidebar-post-title-current {
+    display: block;
+    font-weight: bold;
+}
+
 .sidebar-anchor-link:hover .sidebar-post-title {
     color: #DD0000;
 }

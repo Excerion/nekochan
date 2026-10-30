@@ -194,9 +194,44 @@ $filterSourceExpression = ($viewMode === 'thread')
     ? $returnBoardExpression
     : $boardExpression;
 $selectedFilterBoards = selected_filter_boards($filterSourceExpression, $allBoardNames);
+$buildThreadScopeClause = static function (?string $expression): array {
+    $whereClause = "WHERE p.thread_id IS NULL";
+    $params = [];
+    $expression = trim((string)$expression);
 
-// Visible posts accumulator for the right sidebar
-$visiblePostsForSidebar = [];
+    if ($expression === '') {
+        return [$whereClause, $params];
+    }
+
+    $parsedExpression = parse_board_expression($expression);
+    $boardConditions = [];
+
+    if (!$parsedExpression['includes_all'] && !empty($parsedExpression['included'])) {
+        $inPlaceholders = [];
+        foreach ($parsedExpression['included'] as $idx => $bname) {
+            $ph = ':sidebar_b_' . $idx;
+            $inPlaceholders[] = $ph;
+            $params[$ph] = $bname;
+        }
+        $boardConditions[] = 'b.name IN (' . implode(',', $inPlaceholders) . ')';
+    }
+
+    if (!empty($parsedExpression['excluded'])) {
+        $excludePlaceholders = [];
+        foreach ($parsedExpression['excluded'] as $idx => $bname) {
+            $ph = ':sidebar_exclude_b_' . $idx;
+            $excludePlaceholders[] = $ph;
+            $params[$ph] = $bname;
+        }
+        $boardConditions[] = 'b.name NOT IN (' . implode(',', $excludePlaceholders) . ')';
+    }
+
+    if (!empty($boardConditions)) {
+        $whereClause .= ' AND ' . implode(' AND ', $boardConditions);
+    }
+
+    return [$whereClause, $params];
+};
 
 // Track view data
 $threadsData = [];
@@ -262,9 +297,6 @@ if ($viewMode === 'thread') {
             ];
         }
     }
-
-    // Accumulate visible posts for sidebar (OPs only)
-    $visiblePostsForSidebar[] = $singleThread;
 } elseif ($viewMode === 'boardlist') {
     $pageTitle = 'Boards';
 } else {
@@ -336,8 +368,6 @@ if ($viewMode === 'thread') {
 
     // For each thread, fetch total replies count and 5 most recent comments
     foreach ($threadsList as $thread) {
-        $visiblePostsForSidebar[] = $thread;
-
         // Total replies count
         $cntStmt = $pdo->prepare("SELECT COUNT(id) FROM posts WHERE thread_id = :tid");
         $cntStmt->execute([':tid' => $thread['id']]);
@@ -354,13 +384,27 @@ if ($viewMode === 'thread') {
     }
 }
 
-// Sort visible threads for sidebar the same way the current page is ordered:
-// by the most recent bump, not by the OP's creation time.
-usort($visiblePostsForSidebar, function ($a, $b) {
-    $bumpOrder = strtotime($b['bumped_at'] ?? $b['created_at']) <=> strtotime($a['bumped_at'] ?? $a['created_at']);
-    return $bumpOrder !== 0 ? $bumpOrder : ((int)$b['id'] <=> (int)$a['id']);
-});
-$sidebarRecentPosts = array_slice($visiblePostsForSidebar, 0, SIDEBAR_RECENT_POSTS_LIMIT);
+$sidebarBoardExpression = trim((string)$filterSourceExpression);
+if ($viewMode === 'thread' && $sidebarBoardExpression === '') {
+    $sidebarBoardExpression = trim((string)($singleThread['board_name'] ?? ''));
+}
+if ($sidebarBoardExpression === '') {
+    $sidebarBoardExpression = '*';
+}
+
+[$sidebarWhereClause, $sidebarParams] = $buildThreadScopeClause($sidebarBoardExpression);
+$sidebarRecentStmt = $pdo->prepare("
+    SELECT p.*, b.name AS board_name
+    FROM posts p
+    JOIN boards b ON p.board_id = b.id
+    $sidebarWhereClause
+    ORDER BY p.bumped_at DESC, p.id DESC
+    LIMIT " . SIDEBAR_RECENT_POSTS_LIMIT . "
+");
+$sidebarRecentStmt->execute($sidebarParams);
+$sidebarRecentPosts = $sidebarRecentStmt->fetchAll();
+$sidebarOverviewUrl = url_board_expression($sidebarBoardExpression);
+$sidebarThreadContext = $sidebarBoardExpression;
 
 // Use Yotsuba B colours only when every board represented by this view is SFW.
 $themeNsfw = true;
@@ -1011,12 +1055,11 @@ if ($viewMode === 'thread') {
                 </ul>
             </div>
 
-            <!-- Titles of the 20 Most Recent Threads (Synchronized with Current View) -->
+            <!-- Recent threads inside the current board filter -->
             <div class="sidebar-section">
-                <div class="sidebar-header">Recent Threads in View</div>
-                <div class="sidebar-subtext">Threads visible on this page, ordered by latest bump:</div>
+                <div class="sidebar-header">Recent threads</div>
                 <?php if (empty($sidebarRecentPosts)): ?>
-                    <div class="sidebar-empty">No posts on this page.</div>
+                    <div class="sidebar-empty">No recent threads.</div>
                 <?php else: ?>
                     <ul class="sidebar-post-list">
                         <?php foreach ($sidebarRecentPosts as $sp): ?>
@@ -1029,11 +1072,19 @@ if ($viewMode === 'thread') {
                                     if (mb_strlen($snippet) > 30) $displayTitle .= '...';
                                     if ($displayTitle === '') $displayTitle = '[No Title]';
                                 }
+                                $isCurrentSidebarThread = $viewMode === 'thread' && (int)$sp['id'] === (int)$singleThread['id'];
                             ?>
                             <li>
-                                <a href="#p<?= (int)$sp['id'] ?>" class="sidebar-anchor-link">
-                                    <span class="sidebar-post-title"><?= htmlspecialchars($displayTitle) ?></span>
-                                </a>
+                                <?php if ($isCurrentSidebarThread): ?>
+                                    <span class="sidebar-post-title sidebar-post-title-current" aria-current="page"><?= htmlspecialchars($displayTitle) ?></span>
+                                <?php else: ?>
+                                    <?php $recentThreadUrl = ($viewMode === 'thread')
+                                        ? url_thread((int)$sp['id'], $sidebarThreadContext)
+                                        : $sidebarOverviewUrl . '#p' . (int)$sp['id']; ?>
+                                    <a href="<?= htmlspecialchars($recentThreadUrl) ?>" class="sidebar-anchor-link">
+                                        <span class="sidebar-post-title"><?= htmlspecialchars($displayTitle) ?></span>
+                                    </a>
+                                <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
                     </ul>
