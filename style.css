@@ -174,6 +174,11 @@ a:hover {
     font-weight: bold;
 }
 
+.post-title a {
+    color: inherit;
+    font-weight: inherit;
+}
+
 .post-name {
     color: #117743;
     font-weight: bold;

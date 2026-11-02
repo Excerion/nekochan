@@ -866,17 +866,21 @@ if ($viewMode === 'thread') {
 
                             <div class="post-header">
                                 <?php if ($viewMode === 'home' || $viewMode === 'aggregate'): ?>
-                                    <span class="post-title"><a href="<?= htmlspecialchars(url_board($op['board_name'])) ?>" class="post-board-link"><?= htmlspecialchars($op['board_name']) ?></a> / <?= htmlspecialchars($op['title']) ?></span>
+                                    <span class="post-title">
+                                        <a href="<?= htmlspecialchars(url_board($op['board_name'])) ?>" class="post-board-link"><?= htmlspecialchars($op['board_name']) ?></a>
+                                        <?php if (!empty($op['title'])): ?>
+                                            / <a href="<?= htmlspecialchars(url_thread((int)$op['id'], $threadLinkContext)) ?>"><?= htmlspecialchars($op['title']) ?></a>
+                                        <?php endif; ?>
+                                    </span>
                                 <?php else: ?>
                                     <?php if (!empty($op['title'])): ?>
-                                        <span class="post-title"><?= htmlspecialchars($op['title']) ?></span>
+                                        <span class="post-title"><a href="<?= htmlspecialchars(url_thread((int)$op['id'], $threadLinkContext)) ?>"><?= htmlspecialchars($op['title']) ?></a></span>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <span class="post-name"><?= htmlspecialchars($op['name']) ?></span>
                                 <span class="post-date"><?= date('m/d/y(D)H:i:s', strtotime($op['created_at'])) ?></span>
                                 <span class="post-num"><a href="<?= htmlspecialchars(url_thread((int)$op['id'], $threadLinkContext)) ?>#p<?= (int)$op['id'] ?>">No.<?= (int)$op['id'] ?></a></span>
                                 <?php $renderPostIp($op); ?>
-                                <span class="post-view-thread">[<a href="<?= htmlspecialchars(url_thread((int)$op['id'], $threadLinkContext)) ?>">View Thread</a>]</span>
                             </div>
 
                             <?php $renderModeratorControls($op); ?>
