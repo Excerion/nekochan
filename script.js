@@ -90,6 +90,38 @@ function syncExpandedLayout(img) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const layoutWrapper = document.querySelector('.layout-wrapper');
+    const sidebar = document.querySelector('.sidebar-right');
+    const bottomStack = document.querySelector('.bottom-stack');
+    const postFormBox = document.getElementById('post-form');
+    if (layoutWrapper && sidebar && bottomStack && postFormBox) {
+        const sidebarPlaceholder = document.createComment('sidebar-right-placeholder');
+        layoutWrapper.insertBefore(sidebarPlaceholder, sidebar.nextSibling);
+        const mobileSidebarMedia = window.matchMedia('(max-width: 850px)');
+
+        const syncSidebarPosition = () => {
+            if (mobileSidebarMedia.matches) {
+                if (sidebar.parentNode !== bottomStack) {
+                    bottomStack.insertBefore(sidebar, postFormBox.nextSibling);
+                }
+                sidebar.classList.add('sidebar-in-footer');
+            } else {
+                if (sidebar.parentNode !== layoutWrapper) {
+                    layoutWrapper.insertBefore(sidebar, sidebarPlaceholder);
+                }
+                sidebar.classList.remove('sidebar-in-footer');
+            }
+        };
+
+        if (typeof mobileSidebarMedia.addEventListener === 'function') {
+            mobileSidebarMedia.addEventListener('change', syncSidebarPosition);
+        } else {
+            mobileSidebarMedia.addListener(syncSidebarPosition);
+        }
+
+        syncSidebarPosition();
+    }
+
     // Replies need a comment only when no file is attached. New threads keep the required attribute.
     const postForm = document.querySelector('#post-form form');
     const commentBox = document.getElementById('form-comment');

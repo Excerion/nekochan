@@ -1334,8 +1334,9 @@ code {
 /* Responsive adjustments */
 @media (max-width: 850px) {
     .layout-wrapper {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 10px;
+        margin-bottom: 0;
     }
 
     .content-area {
@@ -1345,6 +1346,14 @@ code {
     .sidebar-right {
         width: 100%;
         position: static;
+    }
+
+    .sidebar-right.sidebar-in-footer {
+        margin-top: 10px;
+    }
+
+    .sidebar-quick-tools {
+        display: none;
     }
 
     .reply-container {

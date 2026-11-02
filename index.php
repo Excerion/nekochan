@@ -1047,7 +1047,7 @@ if ($viewMode === 'thread') {
         <aside class="sidebar-right">
             
             <!-- Quick Tools -->
-            <div class="sidebar-section">
+            <div class="sidebar-section sidebar-quick-tools">
                 <div class="sidebar-header">Quick Tools</div>
                 <ul class="sidebar-links">
                     <li><a href="#post-form">&rarr; <?= ($viewMode === 'thread') ? 'Reply to Thread' : 'New Thread' ?></a></li>
