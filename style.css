@@ -1384,6 +1384,105 @@ code {
         margin-left: 18px;
     }
 
+    .post:has(.post-thumb) {
+        display: grid;
+        grid-template-columns: minmax(0, 33.333vw) minmax(0, 1fr);
+        column-gap: 12px;
+        row-gap: 4px;
+        align-items: start;
+    }
+
+    .post:has(.post-thumb) .post-header,
+    .post:has(.post-thumb) .mod-post-controls {
+        grid-column: 1 / -1;
+    }
+
+    .post:has(.post-thumb) .post-header {
+        grid-row: 1;
+        margin-bottom: 0;
+    }
+
+    .post:has(.post-thumb) .mod-post-controls {
+        grid-row: 2;
+    }
+
+    .post:has(.post-thumb) .file-container {
+        grid-column: 1;
+        grid-row: 3;
+        float: none;
+        margin: 0;
+        max-width: 33.333vw;
+    }
+
+    .post:has(.post-thumb) .file-info {
+        grid-column: 1;
+        grid-row: 4;
+        margin: 0;
+    }
+
+    .post:has(.post-thumb) .post-body {
+        grid-column: 2;
+        grid-row: 3 / span 2;
+        min-width: 0;
+        margin-top: 0;
+    }
+
+    .post:has(.post-thumb) .comment-reply-btn-box,
+    .post:has(.post-thumb) .clear-post {
+        grid-column: 1 / -1;
+    }
+
+    .post:has(.post-thumb) .comment-reply-btn-box {
+        grid-row: 5;
+    }
+
+    .post:has(.post-thumb) .clear-post {
+        grid-row: 6;
+    }
+
+    .post:has(.post-thumb) .post-thumb {
+        max-width: 33.333vw;
+        max-height: 33.333vw;
+    }
+
+    .post:has(.post-thumb) .post-thumb.expanded {
+        max-width: 100%;
+        max-height: none;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .file-container,
+    .post.expanded-too-big:has(.post-thumb) .file-info,
+    .post.expanded-too-big:has(.post-thumb) .post-body,
+    .post.expanded-too-big:has(.post-thumb) .comment-reply-btn-box,
+    .post.expanded-too-big:has(.post-thumb) .clear-post {
+        grid-column: 1 / -1;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .file-container {
+        grid-row: 3;
+        max-width: 100%;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .file-info {
+        grid-row: 4;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .post-body {
+        grid-row: 5;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .comment-reply-btn-box {
+        grid-row: 6;
+    }
+
+    .post.expanded-too-big:has(.post-thumb) .clear-post {
+        grid-row: 7;
+    }
+
     .post-thumb,
     .post-media-player {
         max-width: 100%;
